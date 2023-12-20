@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-look-at-component@0.5.1/dist/aframe-look-at-component.min.js"></script>
+  <!-- Include the animation-mixer component -->
+  <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+</head>
+<body>
+  <a-scene>
+    <!-- Camera and cursor setup -->
+    <a-entity id="cam" camera position="0 1.6 0" look-controls>
+      <a-entity cursor="fuse:true; fuseTimeout:2000" position="0 0 -1.8"></a-entity>
+    </a-entity>
+
+    <!-- JavaScript to delay loading of the GLB model -->
+    <script>
+      // Function to add the GLB model to the scene after a delay
+      function addModelToScene() {
+        const scene = document.querySelector('a-scene');
+        const model = document.createElement('a-gltf-model');
+        model.setAttribute('id', 'model');
+        model.setAttribute('src', 'https://cdn.glitch.global/561edccd-6d0c-42fe-9086-02cdb75beabf/hummingbird__flying.glb?v=1703082441902');
+        model.setAttribute('position', '0 2 -4');
+        model.setAttribute('scale', '3 3 3');
+        model.setAttribute('animation-mixer', '');
+        scene.appendChild(model);
+      }
+
+      // Delay the addition of the GLB model (adjust the delay time as needed)
+      setTimeout(addModelToScene, 2000); // Add a delay of 2000 milliseconds (2 seconds)
+    </script>
+
+    <!-- Skybox that loads immediately -->
+    <a-sky id="panorama" src="https://cdn.glitch.global/1c9cd0bc-c584-40cf-bc51-6e6d627b2460/Panorama2f_auto_x2.jpg?v=1703086546059" preload></a-sky>
+  </a-scene>
+</body>
+</html>
